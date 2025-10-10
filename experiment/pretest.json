@@ -1,58 +1,55 @@
-{
-    "version": 2.0,
-    "questions":[
-		{
-			"question": "The output voltage of a log amplifier using BJT is measured between __________ junction.",
-			"answers": {
-				"a": "Base-collector",
-				"b": "Base-emitter",
-				"c": "Emitter-collector",
-				"d": "Emitter-ground"
-			},
-			"correctAnswer": "b"
+[
+    { 
+		"question": "The per unit impedance Z_{pu} is given by -",
+		"answers": {
+			"a": "\\frac{Z(\\text{ohms}) \\times \\text{kVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2}",
+			"b": "\\frac{Z(\\text{ohms}) \\times \\text{MVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2}",
+			"c": "\\frac{Z(\\text{ohms}) \\times \\text{MVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2 \\times 100}",
+			"d": "\\frac{Z(\\text{ohms}) \\times \\text{kVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2 \\times 100}"
 		},
-		{
-			"question": "In logarithmic signal compression __________.",
-			"answers": {
-				"a": "large and small voltages are compressed equally",
-				"b": "large voltages are compressed more than small voltages",
-				"c": "large voltages are compressed less than smaller voltages",
-				"d": "none of the above"
-			},
-			"correctAnswer": "b"
+		"correctAnswer": "b"
+	},
+	{
+		"question": "What does the Y-Bus matrix represent in power system analysis? ",
+		"answers": {
+			"a": "Impedance between buses. ",
+			"b": "Admittance between buses.",
+			"c": "Power flow between buses.",
+			"d": "Voltage levels at buses."
 		},
-		{
-			"question": "A log amplifier has _____ in the feedback loop.",
-			"answers": {
-				"a": "a diode",
-				"b": "a BJT",
-				"c": "a resistor",
-				"d": "either a diode or a BJT"
-			},
-			"correctAnswer": "d"
+		"correctAnswer": "b"
+	},
+	{
+		"question": "The per unit value of a 2 ohm resistor at 100 MVA base and 10 kV base is -",
+		"answers": {
+			"a": "4 per unit.",
+			"b": "2 per unit.",
+			"c": "0.5 per unit.",
+			"d": "0.25 per unit."
 		},
-		{
-			"question": "The log of a number is the _________.",
-			"answers": {
-				"a": "base to which the power must be raised to get that number",
-				"b": "power to which the base must be raised to get that number",
-				"c": "base of that number",
-				"d": "power of that number"
-			},
-			"correctAnswer": "b"
+		"correctAnswer": "b"
+	},
+	{
+	    "question": "If number of buses in power system network is P. Then, the number of Y-Bus elements is:",
+	    "answers": {
+	    	"a": "2P.",
+	    	"b": "4P.",
+	    	"c": "P^2",
+	    	"d": "P^4."
+	    },
+	    "correctAnswer": "c"
+	},
+	{
+		"question": "Before calculating the Y-Bus matrix, which of the following information must be known?",
+		"answers": {
+			"a": "The load demands at each bus.",
+			"b": "The reactive power generation at each bus.",
+			"c": "The thermal limits of all transmission lines.",
+			"d": "The line impedances or admittances of transmission lines and transformers."
 		},
-		{
-			"question": "Which of the following functions does the antilog computation required to perform continuously with log amplifiers?",
-			"answers": {
-				"a": "ln(x)",
-				"b": "log(x)",
-				"c": "sinh(x)",
-				"d": "All of the above"
-			},
-			"correctAnswer": "d"
-		}
-	]
-}
+		"correctAnswer": "d"
+	}
+]
 
 
-
+  

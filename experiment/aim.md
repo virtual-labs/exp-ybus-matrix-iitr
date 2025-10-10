@@ -1,1 +1,1 @@
-#### To study the formation of the Y Bus matrix for load flow analysis in power systems.
+#### The aim of this lab experiment is to form the Y-Bus matrix for power flow studies in power systems.

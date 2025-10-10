@@ -1,28 +1,12 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-.container {
-    max-width: 1500px;
-    padding: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-table {
+  table {
+    border-collapse: collapse;
     width: 100%;
-    border-collapse: separate;
-    margin-top: 20px;
-}
-th, td {
+  }
+  th, td {
+    border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-th {
-    background-color: #ffffff;
-}
-#result {
-    flex-grow: 1;
-}
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }

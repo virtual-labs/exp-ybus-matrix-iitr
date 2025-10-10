@@ -1,11 +1,17 @@
 ## Procedure
-<b>STEP 1</b>: Connect the components as mentioned:
-(1-3), (2-4), (5-7), (6-8).
+<b>STEP 1</b>: Enter the number of buses in a power system. Then, click on the “Save Bus Number”.
 <br>
 <br>
-<b>STEP 2</b>: Click on <b>'Check'</b> button to check the connections. If connected connections are wrong, Make the right connection as per given instruction.
-<br><br>
-<b>STEP 3</b>: If connections are right, Click on the<b>'Start'</b> button to perform the experiment.<br><br>
-<b>STEP 4</b>: Toggle On/Off button to control the power to the system.<br><br>
-<b>STEP 5</b>: Move the <b>'Voltage'</b> range slider to fetch values into table.<br><br>
-<b>STEP 6</b>: Click on <b>'Plot'</b> button to plot the graph.<br><br>
+<b>STEP 2</b>: Enter the number of lines in a power system. Then, click on the “Generate Line Table” and fill the details of lines i.e., From Bus, To Bus, R(pu) , X(pu), B(pu), Tx. Tap. 
+<br>
+<b>Note:</b> Line data for two standard IEEE bus systems are provided- (I) IEEE 5-Bus system and (II) IEEE 14-Bus system. To access the data click on the button of Autofill Line Data: IEEE 5-Bus or Autofill Line Data: IEEE 14-Bus.
+<br>
+<br>
+<b>STEP 3</b>: Click on “Calculate Y-Bus Element (Non-Diagonal Element)”. The values of the Y-Bus non-diagonal elements will be displayed.
+<br>
+<br>
+<b>STEP 4</b>: Click on “Calculate Y-Bus Element (Diagonal Element)”. The values of the Y-Bus diagonal elements will be displayed.
+<br>
+<br>
+<b>STEP 5</b>: Click on “Calculate Y-Bus”. The values of the Y-Bus matrix will be displayed.
+<br>
