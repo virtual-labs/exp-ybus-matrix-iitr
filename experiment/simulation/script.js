@@ -1,256 +1,380 @@
-let lineData = []; // Store line data
-let numBuses = 0; // Store the number of buses
+let buses = [], lines = [], Y = [];
 
-function showNetwork() {
-    const networkHtml = '<img src="3bus.png" alt="Network Diagram">';
-    document.getElementById('network').innerHTML = networkHtml;
+
+// Function to save bus data
+function saveBusData() {
+  buses = [];
+  var numBuses = parseInt(document.getElementById('numBuses').value);
+  if (isNaN(numBuses) || numBuses <= 0) {
+    alert("Please enter a valid number of buses.");
+    return;
+  }
+  for (var i = 0; i < numBuses; i++) {
+    buses.push({});
+  }
 }
 
-function showNetworkDetails() {
-    const numBusesInput = parseInt(prompt('Enter the number of buses:'));
-    const numLinesInput = parseInt(prompt('Enter the number of lines:'));
+// Function to generate line data input table
+function generateLineTable() {
+  var numLines = parseInt(document.getElementById('numLines').value);
+  if (isNaN(numLines) || numLines <= 0) {
+    alert("Please enter a valid number of lines.");
+    return;
+  }
 
-    if (numBusesInput <= 0 || numLinesInput <= 0 || numBusesInput > 24 || numLinesInput > 38) {
-        alert('Network size is inappropriate to perform online mode.');
-        return;
-    }
+  var tableHtml = `
+      <table>
+          <tr>
+              <th>Line No.</th>
+              <th>From Bus</th>
+              <th>To Bus</th>
+              <th>R (pu)</th>
+              <th>X (pu)</th>
+              <th>B (pu)</th>
+              <th>Tx. Tap</th>
+          </tr>
+  `;
 
-    numBuses = numBusesInput;
-    
-    
-// Show the table header after fetching data
-    document.querySelector('#branchData thead').style.display = 'table-header-group';
-    // Show the table
-    document.getElementById('branchData').style.display = 'table';
-
-    // Clear existing line data
-    lineData = [];
-
-    // Clear existing table
-    const tbody = document.querySelector('#branchData tbody');
-    tbody.innerHTML = '';
-
-    // Add input fields for each line
-    for (let i = 0; i < numLinesInput; i++) {
-        addLine();
-    }
+  for (var i = 1; i <= numLines; i++) {
+      tableHtml += `
+          <tr>
+              <td>${i}</td>
+              <td><input type="number" id="fromBus${i}" required></td>
+              <td><input type="number" id="toBus${i}" required></td>
+              <td><input type="text" id="R${i}" required></td>
+              <td><input type="text" id="X${i}" required></td>
+              <td><input type="text" id="Charging${i}" required></td>
+              <td><input type="text" id="Tap${i}" required></td>
+          </tr>
+      `;
+  }
+  
+  tableHtml += '</table>';
+  document.getElementById('lineTableContainer').innerHTML = tableHtml;
 }
 
-function addLine() {
-    const tbody = document.querySelector('#branchData tbody');
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td><input type="number" id="fromBus"></td>
-        <td><input type="number" id="toBus"></td>
-        <td><input type="number" id="R"></td>
-        <td><input type="number" id="X"></td>
-    `;
-    tbody.appendChild(row);
+// Function to autofill line data for six lines
+function autofillSixLines() {
+  var numLines = 6;
+  document.getElementById('numLines').value = numLines; // Update input field
+  generateLineTable(); // Regenerate table with updated number of lines
+
+  // Autofill data into the table
+  var defaultFromBus = [1, 1, 2, 3, 3, 4];
+  var defaultToBus = [2, 5, 3, 4, 5, 5];
+  var defaultR = [0.042, 0.031, 0.031, 0.024, 0.053, 0.063];
+  var defaultX = [0.168, 0.126, 0.126, 0.136, 0.210, 0.252];
+  var defaultCharging = [0.082, 0.062, 0.062, 0.164, 0.102, 0.122];
+  var defaultTap = [0, 0, 0, 0, 0, 0];
+
+  for (var i = 0; i < numLines; i++) {
+    document.getElementById(`fromBus${i+1}`).value = defaultFromBus[i];
+    document.getElementById(`toBus${i+1}`).value = defaultToBus[i];
+    document.getElementById(`R${i+1}`).value = defaultR[i];
+    document.getElementById(`X${i+1}`).value = defaultX[i];
+    document.getElementById(`Charging${i+1}`).value = defaultCharging[i];
+    document.getElementById(`Tap${i+1}`).value = defaultTap[i];
+  }
 }
 
-function deleteLine() {
-    const tbody = document.querySelector('#branchData tbody');
-    if (tbody.children.length > 0) {
-        tbody.removeChild(tbody.lastChild);
-    }
+// Function to autofill line data for twenty lines
+function autofillTwentyLines() {
+  var numLines = 20;
+  document.getElementById('numLines').value = numLines; // Update input field
+  generateLineTable(); // Regenerate table with updated number of lines
+
+  // Autofill data into the table
+  var defaultFromBus = [1, 1, 2, 2, 2, 3, 4, 4, 4, 5, 6, 6, 6, 7, 7, 9, 9, 10, 12, 13];
+  var defaultToBus = [2, 5, 3, 4, 5, 4, 5, 7, 9, 6, 11, 12, 13, 8, 9, 10, 14, 11, 13, 14];
+  var defaultR = [0.0194, 0.054, 0.047, 0.0581, 0.0569, 0.067, 0.0134, 0, 0, 0, 0.095, 0.1229, 0.0661, 0, 0, 0.0318, 0.127, 0.082, 0.2209, 0.1709];
+  var defaultX = [0.0592, 0.223, 0.1979, 0.1763, 0.1738, 0.171, 0.0421, 0.209, 0.5562, 0.2522, 0.1989, 0.2557, 0.1302, 0.1762, 0.011, 0.0845, 0.2703, 0.192, 0.1999, 0.3479];
+  var defaultCharging = [0.1056, 0.984, 0.0876, 0.0748, 0.0678, 0.0692, 0.0256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var defaultTap = [0, 0, 0, 0, 0, 0, 0, 0.978, 0.969, 0.932, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0];
+
+  for (var i = 0; i < numLines; i++) {
+    document.getElementById(`fromBus${i+1}`).value = defaultFromBus[i];
+    document.getElementById(`toBus${i+1}`).value = defaultToBus[i];
+    document.getElementById(`R${i+1}`).value = defaultR[i];
+    document.getElementById(`X${i+1}`).value = defaultX[i];
+    document.getElementById(`Charging${i+1}`).value = defaultCharging[i];
+    document.getElementById(`Tap${i+1}`).value = defaultTap[i];
+  }
 }
 
-// Code update for the calculation of diagonal and off-diagonal elements ****
+// Function to save line data
+function saveLineData() {
+  lines = [];
+  var numLines = parseInt(document.getElementById('numLines').value);
+  for (var i = 0; i < numLines; i++) {
+    lines.push({
+      from: parseInt(document.getElementById(`fromBus${i + 1}`).value),
+      to: parseInt(document.getElementById(`toBus${i + 1}`).value),
+      R: parseFloat(document.getElementById(`R${i + 1}`).value),
+      X: parseFloat(document.getElementById(`X${i + 1}`).value),
+      charging: parseFloat(document.getElementById(`Charging${i + 1}`).value),
+      Tap: parseFloat(document.getElementById(`Tap${i + 1}`).value),
+    });
+  }
+}
+
+// Function to format complex numbers for display
+function formatComplexNumber(complexNumber, decimals) {
+  let real = parseFloat(complexNumber.re).toFixed(decimals);
+  let imag = parseFloat(complexNumber.im).toFixed(decimals);
+  return parseFloat(imag) >= 0 ? `${real} + ${imag}i` : `${real} - ${Math.abs(imag)}i`;
+}
+
+// Code update for the calculation of diagonal and off-diagonal elements
+
+// For Diagonal elements calculation - 
 function calculateDiagonal() {
-    const tbody = document.querySelector('#branchData tbody');
-    lineData = []; // Reset line data
-    
-    // Extract line data from table
-    tbody.querySelectorAll('tr').forEach(row => {
-        const from = parseInt(row.querySelector('#fromBus').value);
-        const to = parseInt(row.querySelector('#toBus').value);
-        const R = parseFloat(row.querySelector('#R').value);
-        const X = parseFloat(row.querySelector('#X').value);
-        lineData.push({ from, to, R, X });
-    });
-    
-     // Validate the entered line data
-    if (!validateLineData(lineData)) {
-        alert('Network details are mismatched.');
-        return;
+    saveBusData();
+    saveLineData();
+
+    var numBuses = buses.length;
+    var numLines = lines.length;
+
+    // Initialize Y matrix
+    Y = Array.from({ length: numBuses }, () => Array.from({ length: numBuses }, () => math.complex(0, 0)));
+
+    // Calculate line admittances and update Ybus
+    for (var i = 0; i < numLines; i++) {
+        var from = lines[i].from - 1; // Convert to zero-based index
+        var to = lines[i].to - 1; // Convert to zero-based index
+        var R = lines[i].R;
+        var X = lines[i].X;
+        var B = lines[i].charging / 2; // Half charging admittance at each end
+        var tap = lines[i].Tap; // Tap changing transformer value, 1 if no transformer
+        var admittance = math.divide(1, math.complex(R, X));
+        var shuntAdmittance = math.complex(0, B);
+        if (tap > 0) {
+            // Update Ybus matrix for tap-changing transformers
+            var tapComplex = math.complex(tap, 0);
+            var tapSquare = math.multiply(tapComplex, tapComplex);
+            
+            Y[from][to] = math.subtract(Y[from][to], math.divide(admittance, tapComplex));
+            Y[to][from] = Y[from][to]; // Symmetric matrix
+
+            var fromAdmittance = math.add(
+                math.divide(admittance, tapSquare),
+                math.multiply(math.divide(1, tapSquare), math.subtract(math.divide(1, tapComplex), 1), admittance),
+                shuntAdmittance
+            );
+
+            var toAdmittance = math.add(
+                admittance,
+                math.multiply(math.subtract(1, math.divide(1, tapComplex)), admittance),
+                shuntAdmittance
+            );
+
+            Y[from][from] = math.add(Y[from][from], fromAdmittance);
+            Y[to][to] = math.add(Y[to][to], toAdmittance);
+        } else {
+            // Regular update without tap-changing transformers
+            Y[from][to] = math.subtract(Y[from][to], admittance);
+            Y[to][from] = Y[from][to]; // Symmetric matrix
+
+            Y[from][from] = math.add(Y[from][from], admittance, shuntAdmittance);
+            Y[to][to] = math.add(Y[to][to], admittance, shuntAdmittance);
+        }
     }
 
-    const numBuses = calculateNumBuses(lineData);
-    let Ybus = Array.from({ length: numBuses }, () => Array(numBuses).fill({ real: 0, imag: 0 }));
-
-    lineData.forEach(branch => {
-        let from = branch.from - 1;
-        let to = branch.to - 1;
-        let R = branch.R;
-        let X = branch.X;
-        let Y = { real: R / (R * R + X * X), imag: -X / (R * R + X * X) };
-        Ybus[from][from] = complexAdd(Ybus[from][from], Y);
-        Ybus[to][to] = complexAdd(Ybus[to][to], Y);
-        Ybus[from][to] = complexSubtract(Ybus[from][to], Y);
-        Ybus[to][from] = complexSubtract(Ybus[to][from], Y);
-    });
-
-    let diagonalElements = [];
-    for (let i = 0; i < Ybus.length; i++) {
-        diagonalElements.push(Ybus[i][i]);
-    }
-    displayDiagonal(diagonalElements);
+  let diagonalElements = [];
+  for (let i = 0; i < Y.length; i++) {
+      diagonalElements.push(Y[i][i]);
+  }
+  displayDiagonal(diagonalElements);
 }
+
+
 
 function calculatenonDiagonal() {
-    const tbody = document.querySelector('#branchData tbody');
-    lineData = []; // Reset line data
-    
-    // Extract line data from table
-    tbody.querySelectorAll('tr').forEach(row => {
-        const from = parseInt(row.querySelector('#fromBus').value);
-        const to = parseInt(row.querySelector('#toBus').value);
-        const R = parseFloat(row.querySelector('#R').value);
-        const X = parseFloat(row.querySelector('#X').value);
-        lineData.push({ from, to, R, X });
-    });
-     
-     // Validate the entered line data
-    if (!validateLineData(lineData)) {
-        alert('Network details are mismatched.');
-        return;
-    }
+    saveBusData();
+    saveLineData();
 
-    const numBuses = calculateNumBuses(lineData);
-    let Ybus = Array.from({ length: numBuses }, () => Array(numBuses).fill({ real: 0, imag: 0 }));
+    var numBuses = buses.length;
+    var numLines = lines.length;
 
-    lineData.forEach(branch => {
-        let from = branch.from - 1 ;
-        let to = branch.to - 1 ;
-        let R = branch.R;
-        let X = branch.X;
-        let Y = { real: R / (R * R + X * X), imag: -X / (R * R + X * X) };
-        Ybus[from][from] = complexAdd(Ybus[from][from], Y);
-        Ybus[to][to] = complexAdd(Ybus[to][to], Y);
-        Ybus[from][to] = complexSubtract(Ybus[from][to], Y);
-        Ybus[to][from] = complexSubtract(Ybus[to][from], Y);
-    });
+    // Initialize Y matrix
+    Y = Array.from({ length: numBuses }, () => Array.from({ length: numBuses }, () => math.complex(0, 0)));
 
-    let nondiagonalElements = [];
-    for (let i = 0; i < numBuses; i++) {
-        for (let j = 0; j < numBuses; j++) {
-            if (i !== j) {
-                nondiagonalElements.push(Ybus[i][j]); // Collect non-diagonal elements
-            }
+    // Calculate line admittances and update Ybus
+    for (var i = 0; i < numLines; i++) {
+        var from = lines[i].from - 1; // Convert to zero-based index
+        var to = lines[i].to - 1; // Convert to zero-based index
+        var R = lines[i].R;
+        var X = lines[i].X;
+        var B = lines[i].charging / 2; // Half charging admittance at each end
+        var tap = lines[i].Tap; // Tap changing transformer value, 1 if no transformer
+        var admittance = math.divide(1, math.complex(R, X));
+        var shuntAdmittance = math.complex(0, B);
+        if (tap > 0) {
+            // Update Ybus matrix for tap-changing transformers
+            var tapComplex = math.complex(tap, 0);
+            var tapSquare = math.multiply(tapComplex, tapComplex);
+            
+            Y[from][to] = math.subtract(Y[from][to], math.divide(admittance, tapComplex));
+            Y[to][from] = Y[from][to]; // Symmetric matrix
+
+            var fromAdmittance = math.add(
+                math.divide(admittance, tapSquare),
+                math.multiply(math.divide(1, tapSquare), math.subtract(math.divide(1, tapComplex), 1), admittance),
+                shuntAdmittance
+            );
+
+            var toAdmittance = math.add(
+                admittance,
+                math.multiply(math.subtract(1, math.divide(1, tapComplex)), admittance),
+                shuntAdmittance
+            );
+
+            Y[from][from] = math.add(Y[from][from], fromAdmittance);
+            Y[to][to] = math.add(Y[to][to], toAdmittance);
+        } else {
+            // Regular update without tap-changing transformers
+            Y[from][to] = math.subtract(Y[from][to], admittance);
+            Y[to][from] = Y[from][to]; // Symmetric matrix
+
+            Y[from][from] = math.add(Y[from][from], admittance, shuntAdmittance);
+            Y[to][to] = math.add(Y[to][to], admittance, shuntAdmittance);
         }
     }
 
-    displaynonDiagonal(nondiagonalElements, numBuses);
+  let nondiagonalElements = [];
+  for (let i = 0; i < numBuses; i++) {
+      for (let j = 0; j < numBuses; j++) {
+          if (i !== j) {
+              nondiagonalElements.push(Y[i][j]); // Collect non-diagonal elements
+          }
+      }
+  }
+  displaynonDiagonal(nondiagonalElements, numBuses);
 }
 
-
-function calculateYbus() {
-    const tbody = document.querySelector('#branchData tbody');
-    lineData = []; // Reset line data
-    
-    // Extract line data from table
-    tbody.querySelectorAll('tr').forEach(row => {
-        const from = parseInt(row.querySelector('#fromBus').value);
-        const to = parseInt(row.querySelector('#toBus').value);
-        const R = parseFloat(row.querySelector('#R').value);
-        const X = parseFloat(row.querySelector('#X').value);
-        lineData.push({ from, to, R, X });
-    });
-
-    // Validate the entered line data
-    if (!validateLineData(lineData)) {
-        alert('Network details are mismatched.');
-        return;
-    }
-
-    let Ybus = Array.from({ length: numBuses }, () => Array(numBuses).fill({ real: 0, imag: 0 }));
-
-    lineData.forEach(branch => {
-        let from = branch.from - 1;
-        let to = branch.to - 1;
-        let R = branch.R;
-        let X = branch.X;
-        let Y = { real: R / (R * R + X * X), imag: -X / (R * R + X * X) };
-        Ybus[from][from] = complexAdd(Ybus[from][from], Y);
-        Ybus[to][to] = complexAdd(Ybus[to][to], Y);
-        Ybus[from][to] = complexSubtract(Ybus[from][to], Y);
-        Ybus[to][from] = complexSubtract(Ybus[to][from], Y);
-    });
-
-    displayYbus(Ybus);
-}
-
-function validateLineData(lineData) {
-    for (const branch of lineData) {
-        if (branch.from < 1 || branch.from > numBuses || branch.to < 1 || branch.to > numBuses) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
-  function calculateNumBuses(lineData) {
-    let maxBus = 0;
-    lineData.forEach(branch => {
-        maxBus = Math.max(maxBus, branch.from, branch.to);
-    });
-    return maxBus;
-}
-
-
-function displayYbus(Ybus) {
-    let resultHtml = '<h3>Ybus Matrix</h3><table>';
-    Ybus.forEach((row, i) => {
-        resultHtml += '<tr>';
-        row.forEach((value, j) => {
-            const formattedReal = value.real.toFixed(4);
-            const formattedImag = value.imag.toFixed(4);
-            const formattedValue = `${formattedReal} ${formattedImag < 0 ? '-' : '+'} ${Math.abs(formattedImag)}j`;
-            resultHtml += `<td>${formattedValue}</td>`;
-        });
-        resultHtml += '</tr>';
-    });
-    resultHtml += '</table>';
-    document.getElementById('resultYbus').innerHTML = resultHtml;
-}
-
+// Display of Diagonal elements of Ybus matrix --
 
 function displayDiagonal(diagonalElements) {
     let resultHtml = '<h3>Diagonal Elements of Ybus Matrix</h3><table>';
     diagonalElements.forEach((element, i) => {
         let busIndex = i + 1;
-        let busLabel = `Y<sub>${busIndex}${busIndex}<sub>`;
-        resultHtml += `<tr><td>${busLabel}</td><td>${element.real.toFixed(4)} ${element.imag.toFixed(4) < 0 ? '-' : '+'} ${Math.abs(element.imag.toFixed(4))}j</td></tr>`;
+        let busLabel = `Y<sub>${busIndex},${busIndex}</sub>`;
+        let realPart = element.re.toFixed(4);
+        let imagPart = element.im.toFixed(4);
+        let sign = element.im < 0 ? '-' : '+';
+        let imagAbs = Math.abs(imagPart);
+        resultHtml += `<tr><td>${busLabel}</td><td>${realPart} ${sign} ${imagAbs}i</td></tr>`;
     });
     resultHtml += '</table>';
     document.getElementById('resultdiagonal').innerHTML = resultHtml;
 }
 
-function displaynonDiagonal(nondiagonalElements, matrixSize) {
-let resultHtml = '<h3>Non-Diagonal Elements of Ybus Matrix</h3>';
-resultHtml += '<table>';
-for (let i = 0; i < nondiagonalElements.length; i++) {
-    let row = Math.floor(i / (matrixSize - 1)) + 1; // Calculate the row index
-    let col = (i % (matrixSize - 1)) + 1; // Calculate the column index
-    if (col >= row) {
-        col++; // Increment column index if it's greater than or equal to the row index
+// Indices for the non-diagonal elements of Ybus matrix --
+function generateBusIndices(m) {
+    let indices = [];
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= m; j++) {
+            if (i !== j) {
+                indices.push([i, j]);
+            }
+        }
     }
-    if (col > matrixSize) {
-        col = 1; // Wrap around to the first column if it exceeds the matrix size
-    }
-    let busLabel = `Y<sub>${row}${col}</sub>`; // Construct the bus label with subscript
-    resultHtml += `<tr><td>${busLabel}</td><td>${nondiagonalElements[i].real.toFixed(4)} ${nondiagonalElements[i].imag.toFixed(4) < 0 ? '-' : '+'} ${Math.abs(nondiagonalElements[i].imag.toFixed(4))}j</td></tr>`;
+    return indices;
 }
-resultHtml += '</table>';
-document.getElementById('resultnondiagonal').innerHTML = resultHtml;
+function formatBusIndex(index) {
+    return `Y<sub>${index[0]},${index[1]}</sub>`;
 }
 
-  
-function complexAdd(a, b) {
-    return { real: a.real + b.real, imag: a.imag + b.imag };
+function displaynonDiagonal(nondiagonalElements, m) {
+    let resultHtml = '<h3>Non-Diagonal Elements of Ybus Matrix</h3><table>';
+    let busIndices = generateBusIndices(m);
+
+    for (let i = 0; i < nondiagonalElements.length; i++) {
+        let busIndex = busIndices[i];
+        let busLabel = formatBusIndex(busIndex);
+
+        let realPart = nondiagonalElements[i].re.toFixed(4);
+        let imagPart = nondiagonalElements[i].im.toFixed(4);
+        let sign = nondiagonalElements[i].im < 0 ? '-' : '+';
+        let imagAbs = Math.abs(imagPart);
+
+        resultHtml += `<tr><td>${busLabel}</td><td>${realPart} ${sign} ${imagAbs}i</td></tr>`;
+    }
+
+    resultHtml += '</table>';
+    document.getElementById('resultnondiagonal').innerHTML = resultHtml;
 }
 
-function complexSubtract(a, b) {
-    return { real: a.real - b.real, imag: a.imag - b.imag };
+
+// Function to calculate the Ybus matrix
+function calculateYbus() {
+    saveBusData();
+    saveLineData();
+
+    var numBuses = buses.length;
+    var numLines = lines.length;
+
+    // Initialize Y matrix
+    Y = Array.from({ length: numBuses }, () => Array.from({ length: numBuses }, () => math.complex(0, 0)));
+
+    // Calculate line admittances and update Ybus
+    for (var i = 0; i < numLines; i++) {
+        var from = lines[i].from - 1; // Convert to zero-based index
+        var to = lines[i].to - 1; // Convert to zero-based index
+        var R = lines[i].R;
+        var X = lines[i].X;
+        var B = lines[i].charging / 2; // Half charging admittance at each end
+        var tap = lines[i].Tap; // Tap changing transformer value, 0 if no transformer
+        var admittance = math.divide(1, math.complex(R, X));
+        var shuntAdmittance = math.complex(0, B);
+        if (tap > 0) {
+            // Update Ybus matrix for tap-changing transformers
+            var tapComplex = math.complex(tap, 0);
+            var tapSquare = math.multiply(tapComplex, tapComplex);
+            
+            Y[from][to] = math.subtract(Y[from][to], math.divide(admittance, tapComplex));
+            Y[to][from] = Y[from][to]; // Symmetric matrix
+
+            var fromAdmittance = math.add(
+                math.divide(admittance, tapSquare),
+                math.multiply(math.divide(1, tapSquare), math.subtract(math.divide(1, tapComplex), 1), admittance),
+                shuntAdmittance
+            );
+
+            var toAdmittance = math.add(
+                admittance,
+                math.multiply(math.subtract(1, math.divide(1, tapComplex)), admittance),
+                shuntAdmittance
+            );
+
+            Y[from][from] = math.add(Y[from][from], fromAdmittance);
+            Y[to][to] = math.add(Y[to][to], toAdmittance);
+        } else {
+            // Regular update without tap-changing transformers
+            Y[from][to] = math.subtract(Y[from][to], admittance);
+            Y[to][from] = Y[from][to]; // Symmetric matrix
+
+            Y[from][from] = math.add(Y[from][from], admittance, shuntAdmittance);
+            Y[to][to] = math.add(Y[to][to], admittance, shuntAdmittance);
+        }
+    }
+
+    displayYbusMatrix();
+}
+
+// Function to display the Ybus matrix
+function displayYbusMatrix() {
+  var tableHtml = '<table><tr><th></th>';
+  for (var i = 0; i < Y.length; i++) {
+      tableHtml += `<th>${i+1}</th>`;
+  }
+  tableHtml += '</tr>';
+  for (var i = 0; i < Y.length; i++) {
+      tableHtml += `<tr><th>${i+1}</th>`;
+      for (var j = 0; j < Y[i].length; j++) {
+          tableHtml += `<td>${formatComplexNumber(Y[i][j], 4)}</td>`;
+      }
+      tableHtml += '</tr>';
+  }
+  tableHtml += '</table>';
+  document.getElementById('ybusContainer').innerHTML = tableHtml;
 }
