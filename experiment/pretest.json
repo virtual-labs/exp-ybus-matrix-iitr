@@ -1,39 +1,55 @@
-{
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    }
-  ]
-}
+[
+    { 
+		"question": "The per unit impedance Z_{pu} is given by -",
+		"answers": {
+			"a": "\\frac{Z(\\text{ohms}) \\times \\text{kVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2}",
+			"b": "\\frac{Z(\\text{ohms}) \\times \\text{MVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2}",
+			"c": "\\frac{Z(\\text{ohms}) \\times \\text{MVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2 \\times 100}",
+			"d": "\\frac{Z(\\text{ohms}) \\times \\text{kVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2 \\times 100}"
+		},
+		"correctAnswer": "b"
+	},
+	{
+		"question": "What does the Y-Bus matrix represent in power system analysis? ",
+		"answers": {
+			"a": "Impedance between buses. ",
+			"b": "Admittance between buses.",
+			"c": "Power flow between buses.",
+			"d": "Voltage levels at buses."
+		},
+		"correctAnswer": "b"
+	},
+	{
+		"question": "The per unit value of a 2 ohm resistor at 100 MVA base and 10 kV base is -",
+		"answers": {
+			"a": "4 per unit.",
+			"b": "2 per unit.",
+			"c": "0.5 per unit.",
+			"d": "0.25 per unit."
+		},
+		"correctAnswer": "b"
+	},
+	{
+	    "question": "If number of buses in power system network is P. Then, the number of Y-Bus elements is:",
+	    "answers": {
+	    	"a": "2P.",
+	    	"b": "4P.",
+	    	"c": "P^2",
+	    	"d": "P^4."
+	    },
+	    "correctAnswer": "c"
+	},
+	{
+		"question": "Before calculating the Y-Bus matrix, which of the following information must be known?",
+		"answers": {
+			"a": "The load demands at each bus.",
+			"b": "The reactive power generation at each bus.",
+			"c": "The thermal limits of all transmission lines.",
+			"d": "The line impedances or admittances of transmission lines and transformers."
+		},
+		"correctAnswer": "d"
+	}
+]
+
+
+  

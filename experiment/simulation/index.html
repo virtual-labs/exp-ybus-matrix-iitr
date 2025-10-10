@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y-Bus Calculator</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+
 </head>
 <body>
-		<!-- Your code goes here-->
+<h1>Y-Bus Matrix Formation</h1>
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
+<h2>Bus Data</h2>
+<label for="numBuses">Enter the number of buses:</label>
+<input type="number" id="numBuses">
+<button onclick="saveBusData()">Save Bus Number</button>
+
+<h2>Line Data</h2>
+<label for="numLines">Enter the number of lines:</label>
+<input type="number" id="numLines">
+<button onclick="generateLineTable()">Generate Line Table</button>
+<button onclick="autofillSixLines()">Autofill Line Data: IEEE 5-Bus</button>
+<button onclick="autofillTwentyLines()">Autofill Line Data: IEEE 14-Bus</button>
+<div id="lineTableContainer"></div>
+
+<h2>Y-Bus Matrix: Non-Diagonal Elements</h2>
+<button onclick="calculatenonDiagonal()">Calculate Y-Bus Element (Non-Diagonal Element)</button>
+<div id="resultnondiagonal"></div>
+<h2>Y-Bus Matrix: Diagonal Elements</h2>
+<button onclick="calculateDiagonal()">Calculate Y-Bus Element (Diagonal Element)</button>
+<div id="resultdiagonal"></div>
+<h2>Y-Bus Matrix</h2>
+<button onclick="calculateYbus()">Calculate Y-Bus</button>
+<div id="ybusContainer"></div>
+
+
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.js"></script>
+
 </body>
 </html>
