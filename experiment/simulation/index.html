@@ -1,42 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y-Bus Calculator</title>
-<link rel="stylesheet" type="text/css" href="styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Y-Bus Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+ 
 </head>
 <body>
-<h1>Y-Bus Matrix Formation</h1>
+  <div class="container">
+    <div class="navbar">
+      <h1 style="width: 100%; background-color: #ecf0f1; color: #34495e;" class="section">
+        Y-Bus Matrix Formation
+      </h1>
 
-<h2>Bus Data</h2>
-<label for="numBuses">Enter the number of buses:</label>
-<input type="number" id="numBuses">
-<button onclick="saveBusData()">Save Bus Number</button>
+      <!-- Instructions Button & Modal -->
+      <div class="instructions">
+        <button id="openModal">Instructions</button>
+      </div>
 
-<h2>Line Data</h2>
-<label for="numLines">Enter the number of lines:</label>
-<input type="number" id="numLines">
-<button onclick="generateLineTable()">Generate Line Table</button>
-<button onclick="autofillSixLines()">Autofill Line Data: IEEE 5-Bus</button>
-<button onclick="autofillTwentyLines()">Autofill Line Data: IEEE 14-Bus</button>
-<div id="lineTableContainer"></div>
+      <div id="instructionModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="closeModal"></span>
+           
+          <p><b>STEP 1:</b> Enter the number of buses in a power system. Then, click on <b>“Save Bus Number”</b>.</p>
+          <p><b>STEP 2:</b> Enter the number of lines in a power system. Then, click on <b>“Generate Line Table”</b> and fill the details of lines i.e., From Bus, To Bus, R(pu), X(pu), B(pu), Tx. Tap.</p>
+          <p><b>Note:</b> Line data for two standard IEEE bus systems are provided — (I) IEEE 5-Bus system and (II) IEEE 14-Bus system. To access the data, click on “Autofill Line Data: IEEE 5-Bus” or <b>“Autofill Line Data: IEEE 14-Bus”</b>.</p>
+          <p><b>STEP 3:</b> Click on <b>“Calculate Y-Bus Element (Non-Diagonal Element)”</b>. The values of the Y-Bus non-diagonal elements will be displayed.</p>
+          <p><b>STEP 4:</b> Click on <b>“Calculate Y-Bus Element (Diagonal Element)”</b>. The values of the Y-Bus diagonal elements will be displayed.</p>
+          <p><b>STEP 5:</b> Click on <b>“Calculate Y-Bus”</b>. The values of the Y-Bus matrix will be displayed.</p>
+        </div>
+      </div>
+    </div>
 
-<h2>Y-Bus Matrix: Non-Diagonal Elements</h2>
-<button onclick="calculatenonDiagonal()">Calculate Y-Bus Element (Non-Diagonal Element)</button>
-<div id="resultnondiagonal"></div>
-<h2>Y-Bus Matrix: Diagonal Elements</h2>
-<button onclick="calculateDiagonal()">Calculate Y-Bus Element (Diagonal Element)</button>
-<div id="resultdiagonal"></div>
-<h2>Y-Bus Matrix</h2>
-<button onclick="calculateYbus()">Calculate Y-Bus</button>
-<div id="ybusContainer"></div>
+    <!-- Bus Section -->
+    <div class="section">
+      <h2>Bus Data</h2>
+      <div class="input-row">
+        <label for="numBuses">Enter the number of buses:</label>
+        <input type="number" id="numBuses" placeholder="e.g., 5">
+        <button onclick="saveBusData()">Save Bus Number</button>
+      </div>
+    </div>
 
+    <!-- Line Section -->
+    <div class="section">
+      <h2>Line Data</h2>
+      <div class="input-row">
+        <label for="numLines">Enter the number of lines:</label>
+        <input type="number" id="numLines" placeholder="e.g., 7">
+        <button onclick="generateLineTable()">Generate Line Table</button>
+      </div>
+      <div class="button-group">
+        <button class="button-secondary" onclick="autofillSixLines()">Autofill Line Data: IEEE 5-Bus</button>
+        <button class="button-tertiary" onclick="autofillTwentyLines()">Autofill Line Data: IEEE 14-Bus</button>
+      </div>
+      <div id="lineTableContainer"></div>
+    </div>
 
+    <!-- Non-Diagonal Elements -->
+    <div class="section">
+      <h2>Y-Bus Matrix: Non-Diagonal Elements</h2>
+      <button onclick="calculatenonDiagonal()">Calculate Y-Bus Element (Non-Diagonal)</button>
+      <div id="resultnondiagonal"></div>
+    </div>
 
-<script src="script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.js"></script>
+    <!-- Diagonal Elements -->
+    <div class="section">
+      <h2>Y-Bus Matrix: Diagonal Elements</h2>
+      <button onclick="calculateDiagonal()">Calculate Y-Bus Element (Diagonal)</button>
+      <div id="resultdiagonal"></div>
+    </div>
 
+    <!-- Complete Y-Bus -->
+    <div class="section">
+      <h2>Complete Y-Bus Matrix</h2>
+      <button onclick="calculateYbus()">Calculate Y-Bus Matrix</button>
+      <div id="ybusContainer"></div>
+    </div>
+     <footer>&copy; 2025 Virtual Labs | IIT Roorkee</footer>
+  </div>
+
+  <!-- Modal Script -->
+  <script>
+    const modal = document.getElementById("instructionModal");
+    const openModal = document.getElementById("openModal");
+    const closeModal = document.getElementById("closeModal");
+
+    openModal.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    closeModal.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+  <!-- External Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
