@@ -1,14 +1,14 @@
 [
-    { 
-		"question": "The per unit impedance Z_{pu} is given by -",
-		"answers": {
-			"a": "\\frac{Z(\\text{ohms}) \\times \\text{kVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2}",
-			"b": "\\frac{Z(\\text{ohms}) \\times \\text{MVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2}",
-			"c": "\\frac{Z(\\text{ohms}) \\times \\text{MVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2 \\times 100}",
-			"d": "\\frac{Z(\\text{ohms}) \\times \\text{kVA}_{\\text{Base}}}{(\\text{kV}_{\\text{Base}})^2 \\times 100}"
-		},
-		"correctAnswer": "b"
-	},
+    {
+      "question": "The per unit impedance Z_{pu} is given by -",
+      "answers": {
+        "a": "<img src='images/Formula-1.png' width='130'>",
+        "b": "<img src='images/Formula-2.png' width='130'>",
+        "c": "<img src='images/Formula-3.png' width='130'>",
+        "d": "<img src='images/Formula-4.png' width='130'>"
+      },
+      "correctAnswer": "b"
+    },
 	{
 		"question": "What does the Y-Bus matrix represent in power system analysis? ",
 		"answers": {
