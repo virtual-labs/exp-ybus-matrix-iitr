@@ -1,4 +1,4 @@
- ## References
+
 
 1. J. J. Grainger and W. D. Stevenson. Power System Analysis, Mc Graw-Hill (1994).<br>
 
