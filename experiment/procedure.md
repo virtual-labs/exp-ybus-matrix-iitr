@@ -1,4 +1,4 @@
-## Procedure
+
 <b>STEP 1</b>: Enter the number of buses in a power system. Then, click on the “Save Bus Number”.
 <br>
 <br>

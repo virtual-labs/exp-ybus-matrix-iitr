@@ -63,8 +63,8 @@
 		"question": "If a parallel transmission line is added between two nodes i and j, what changes will happen in the elements of the Y-Bus matrix?",
 		"answers": {
 			"a": "Only Y_{ij} change.",
-			"b": "Only Y_{ij} change.",
-			"c": "Only Y_{ij} change.",
+			"b": "Only Y_{jj} change.",
+			"c": "Only Y_{ji} change.",
 			"d": "Y_{ii}, Y_{jj}, Y_{ij} and Y_{ji} change."
 		},
 		"correctAnswer": "d"
