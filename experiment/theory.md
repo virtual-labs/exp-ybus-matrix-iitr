@@ -7,7 +7,7 @@
 </head>
  
 <div style="font-family: 'Nunito Sans', sans-serif; font-size: 20px;text-align: justify;">
-<h2>Introduction</h2>
+<h3>Introduction</h3>
 
 The Y-Bus matrix, also known as nodal admittance matrix, is a key component in power flow analysis, providing a mathematical representation of the power systems. It is a sparse and symmetric matrix that characterizes the admittance between all pairs of connected buses in a power system. This matrix is used in solving power flow equations to determine the steady-state operating conditions of the power systems, making it a backbone for their analysis and design.<br>
 
