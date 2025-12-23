@@ -1,0 +1,92 @@
+[
+	{
+		"question": "What is the main purpose of constructing the Y-Bus matrix in power system analysis?",
+		"answers": {
+			"a": "To determine the voltage at each bus.",
+			"b": "To analyze the power flow in the network.",
+			"c": "To calculate the current flowing through each line.",
+			"d": "To find the impedance of each transmission line."
+		},
+		"correctAnswer": "b"
+	},
+	{
+		"question": "In a Y-Bus matrix, what does the diagonal element Y_{ii} represent?",
+		"answers": {
+			"a": "The admittance between bus i and bus j.",
+			"b": "The total admittance connected to bus i.",
+			"c": "The impedance of bus i.",
+			"d": "The voltage at bus i."
+		},
+		"correctAnswer": "b"
+	},
+	{
+		"question": "How is the off-diagonal element Y_{ij} in a Y-Bus matrix defined?",
+		"answers": {
+			"a": "As the negative of the admittance between bus i and bus j.",
+			"b": "As the sum of admittances connected to bus i.",
+			"c": "As the total admittance connected to bus j.",
+			"d": "As the impedance between bus i and bus j."
+		},
+		"correctAnswer": "a"
+	},
+	{
+		"question": "What is the significance of a zero entry in a Y-Bus matrix?",
+		"answers": {
+			"a": "It indicates that there is no direct connection between the corresponding buses.",
+			"b": "It indicates that the buses are directly connected with a high admittance.",
+			"c": "It indicates that there is a fault in the system.",
+			"d": "It indicates that the buses have equal voltages."
+		},
+		"correctAnswer": "a"
+	},
+	{
+		"question": "If a tap changing transformer is added between two nodes i and j. What all elements in a Y-Bus matrix will change?",
+		"answers": {
+			"a": "Y_{ij} and Y_{jj} change.",
+			"b": "Y_{jj} and Y_{ii} change.",
+			"c": "Y_{ii} and Y_{ij} change.",
+			"d": "Y_{ii}, Y_{jj}, Y_{ij} and Y_{ji} change."
+		},
+		"correctAnswer": "d"
+	},
+	{
+		"question": "If a shunt admittance is added on node j. What changes will happen in the elements of the Y-Bus matrix? ",
+		"answers": {
+			"a": "Only Y_{ij} change.",
+			"b": "Only Y_{jj} change.",
+			"c": "Only Y_{ii} change.",
+			"d": "All Y_{ii}, Y_{jj}, Y_{ij} and Y_{ji} change."
+		},
+		"correctAnswer": "b"
+	},
+	{
+		"question": "If a parallel transmission line is added between two nodes i and j, what changes will happen in the elements of the Y-Bus matrix?",
+		"answers": {
+			"a": "Only Y_{ij} change.",
+			"b": "Only Y_{jj} change.",
+			"c": "Only Y_{ji} change.",
+			"d": "Y_{ii}, Y_{jj}, Y_{ij} and Y_{ji} change."
+		},
+		"correctAnswer": "d"
+	},
+	{
+		"question": "Y-Bus matrix is:",
+		"answers": {
+			"a": "Symmetric matrix.",
+			"b": "Unity matrix.",
+			"c": "Sparse matrix.",
+			"d": "None of the above."
+		},
+		"correctAnswer": "c"
+	},
+	{
+		"question": "Why is the Y-Bus matrix preferred over the Z-Bus matrix in power flow studies?",
+		"answers": {
+			"a": "Because it is easier to calculate.",
+			"b": "Because it provides better accuracy.",
+			"c": "Because it is computationally more efficient for large systems.",
+			"d": "Because it directly provides the power flows between buses."
+		},
+		"correctAnswer": "c"
+	}
+]
