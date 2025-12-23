@@ -18,7 +18,7 @@ To obtain Y-Bus matrix for the interconnected power system, consider a simple ne
 <center><img src="images/Ybus1.png" style=" height: 280px" align="center"></center><br>
 <center><b>Figure 1. Sample network for 5-bus power system.</b></center><br>
 
-To obtain Y-Bus matrix for the power system, shown in Figure 1. For the Y-Bus matrix formation, all the transmission lines are represented by the π-model (please follow any of power system textbook for more details). For the current injection at each node (bus), the node-voltage equations need to be considered which are based on Kirchoff’s current law (KCL). The impedances of the transmission lines are converted to admittances as per the equation (1) given below. <br>
+To obtain Y-Bus matrix for the power system, shown in Figure 1. For the Y-Bus matrix formation, all the transmission lines are represented by the π-model (please follow any of power system textbook for more details). For the current injection at each node (bus), the node-voltage equations need to be considered which are based on Kirchhoff’s current law (KCL). The impedances of the transmission lines are converted to admittances as per the equation (1) given below. <br>
 
 <center> y<sub>ij</sub> = 1/ z<sub>ij</sub> = 1/ (r<sub>ij</sub>+ x<sub>ij</sub>)   ..............................(1)</center><br>
 
