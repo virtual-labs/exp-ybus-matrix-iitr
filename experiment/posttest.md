@@ -39,8 +39,8 @@ d) All Y<sub>ii</sub>, Y<sub>jj</sub>, Y<sub>ij</sub> and Y<sub>ji</sub> change.
 
 ## Q7. If a parallel transmission line is added between two nodes i and j, what changes will happen in the elements of the Y-Bus matrix?
 a) Only Y<sub>ij</sub> change.  
-b) Only Y<sub>ij</sub> change.  
-c) Only Y<sub>ij</sub> change.  
+b) Only Y<sub>jj</sub> change.  
+c) Only Y<sub>ji</sub> change.  
 d) Y<sub>ii</sub>, Y<sub>jj</sub>, Y<sub>ij</sub> and Y<sub>ji</sub> change.  
 
 ## Q8. Y-Bus matrix is:
